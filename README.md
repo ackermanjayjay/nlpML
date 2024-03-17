@@ -1,4 +1,5 @@
 # nlpML
+
 My dummy App for habit in code with python, I created with dataset in Kaggle to classify in sentiment to Spam or Not-spam
 
 <div style="text-align: justify;">
@@ -12,11 +13,19 @@ you can clone my app if you want
 My dummy App for habit in code with python, I created with dataset in Kaggle to classify in sentiment to Spam or Not-spam
 </div>
 
-
 <div style="text-align: left; margin-top: 20px;">
 	<code>python -m yourvenv</code>
+    <br>
 	<code>pip install -r requirements.txt</code>
 </div>
+
 [how to use venv](https://docs.python.org/3/library/venv.html)
+<br>
+
+<div style="text-align: left; margin-top: 20px;">
+    <strong> Next Time i created with front End</strong>
+</div>
+    <br>
+
 - result  
-![alt text](Capture.PNG)
+  ![alt text](Capture.PNG)
