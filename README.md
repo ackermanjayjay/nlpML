@@ -17,7 +17,7 @@ My dummy App for habit in code with python, I created with dataset in Kaggle to 
 	<code>python -m yourvenv</code>
 	<code>pip install -r requirements.txt</code>
 </div>
-[how to use venv] (https://docs.python.org/3/library/venv.html)
+[how to use venv]: https://docs.python.org/3/library/venv.html
 
 - result  
 ![alt text](Capture.PNG)
