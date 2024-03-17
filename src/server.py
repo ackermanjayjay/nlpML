@@ -6,16 +6,30 @@ from processing import preprocessing_text
 
 from loadedModel import Prediction
 
+from database import InsertRecord,allTable
+
+
 app = FastAPI()
 
 
 @app.get("/")
 def read_root():
-    hasil = preprocessing_text(
-        "UpgrdCentre Orange customer, you may now claim your FREE CAMERA PHONE upgrade for your loyalty. Call now on 0207 153 9153. Offer ends 26th July. T&C's apply. Opt-out available"
-    )
-    return {
-        "Hello": "World",
-        "Processing Text": hasil,
-        "clasifikasi": Prediction(hasil),
-    }
+    fetching = allTable()
+    if not fetching:
+        return {"Message": "Data not connected or web service turn of", "Response": 400}
+
+    return {"Message": fetching, "Response": 200}
+
+
+@app.get("/prediction/{query}")
+def classification(query: str, q: str):
+    simpan = []
+    simpan.append({"Text": q, "Result": preprocessing_text(Prediction(q))})
+    return {"Message": "success", "Response": 200, "Result": simpan}
+
+
+@app.post("/add/prediction")
+def addUsers(text: str):
+    hasil = preprocessing_text(Prediction(text))
+    dataInsert = InsertRecord(text, prediction=hasil)
+    return {"Msg": dataInsert}
