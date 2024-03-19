@@ -1,16 +1,25 @@
 from typing import Union
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from processing import preprocessing_text
 
 from loadedModel import Prediction
 
-from database import InsertRecord,allTable
+from database import InsertRecord, allTable
 
 
 app = FastAPI()
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to limit access to specific origins if needed
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS","XMLHttpRequest"],  # Adjust the HTTP methods as needed
+    allow_headers=["*"],  # Allow all headers, adjust according to your requirements
+)
 
 @app.get("/")
 def read_root():
@@ -29,7 +38,7 @@ def classification(query: str, q: str):
 
 
 @app.post("/add/prediction")
-def addUsers(text: str):
+async def addUsers(text: str):
     hasil = preprocessing_text(Prediction(text))
     dataInsert = InsertRecord(text, prediction=hasil)
     return {"Msg": dataInsert}
