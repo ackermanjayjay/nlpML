@@ -1,8 +1,8 @@
 import axios from "axios";
-
+const urlEndpoint= import.meta.env.VITE_ENDPOINT
 export async function FetchAPI() {
   try {
-    const response = await axios.get("http://127.0.0.1:8000/");
+    const response = await axios.get(`${urlEndpoint}`);
     return response.data.Message; // Assuming you want to return the data from the response
   } catch (error) {
     console.error("Error fetching API:", error);
@@ -13,7 +13,7 @@ export async function FetchAPI() {
 export async function Prediction(text) {
   try {
     const response = await axios.post(
-      `http://127.0.0.1:8000/add/prediction?text=${text}`
+      `${urlEndpoint}/add/prediction?text=${text}`
     );
     return response.data; // Assuming you want to return the data from the response
   } catch (error) {
